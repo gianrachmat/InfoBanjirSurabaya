@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Info Banjir Surabaya</string>
+    <string name="text_login">Login untuk menggunakan fitur Lapor. Atau bisa lewati untuk melihat berita banjir dari kiriman pengguna lain dan Facebook dari E100 Suara Surabaya dan juga melihat laporan cuaca hari ini.</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="fb_permissions">public_profile</string>
+    <string name="facebook_app_id">1907911859436966</string>
+    <string name="action_settings">Settings</string>
+    <string name="message_user_canceled_login">User canceled login</string>
+    <string name="title_activity_rawan">Daerah Rawan Banjir</string>
+</resources>

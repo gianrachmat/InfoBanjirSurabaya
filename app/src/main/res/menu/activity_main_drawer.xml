@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_cuaca"
+            android:icon="@drawable/ic_cloudy"
+            android:title="Cuaca" />
+        <item
+            android:id="@+id/nav_daerah"
+            android:icon="@drawable/ic_map"
+            android:title="Daerah Rawan Banjir" />
+        <item
+            android:id="@+id/nav_lapor"
+            android:icon="@drawable/ic_lapor"
+            android:title="Kirim Laporan" />
+    </group>
+</menu>

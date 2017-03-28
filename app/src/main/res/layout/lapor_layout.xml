@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/nama_buku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="Judul"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/nama_buku"
+                android:text="Deskripsi"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_alignParentLeft="true" />
+
+            <EditText
+                android:id="@+id/nama_pengarang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentLeft="true" />
+
+            <Button
+                android:id="@+id/pilih_gambar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Gambar"
+                android:layout_below="@+id/textView5"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/foto"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/pilih_gambar"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kirim"
+                android:id="@+id/button_simpan"
+                android:layout_below="@+id/foto"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Foto Kejadian"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_below="@+id/nama_pengarang"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="31dp"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lokasi"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView7"
+                android:layout_below="@+id/nama_pengarang"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
