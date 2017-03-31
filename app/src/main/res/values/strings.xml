@@ -10,4 +10,5 @@
     <string name="action_settings">Settings</string>
     <string name="message_user_canceled_login">User canceled login</string>
     <string name="title_activity_rawan">Daerah Rawan Banjir</string>
+    <string name="default_fb_photo">https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg</string>
 </resources>

@@ -1,11 +1,9 @@
 package gq.gianr.infobanjirsurabaya;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,11 +13,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import gq.gianr.infobanjirsurabaya.model.User;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    NavigationView navigationView;
+    View hView;
+    User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +40,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         setTitle(R.string.app_name);
 
@@ -44,7 +58,32 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        hView = navigationView.getHeaderView(0);
+        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                Log.i("json","graphrequest = "+object.toString());
+                try {
+                    user.setUsername(object.getString("name"));
+                    Log.i("json", "name = "+user.getUsername());
+                    user.setProfileImageUrl(object.getJSONObject("picture").getJSONObject("data").getString("url"));
+                    Log.i("json", "pics url = "+user.getProfileImageUrl());
+                    user.setEmail(object.getString("email"));
+                    Log.i("json", "email = "+user.getEmail());
+                    showUserInfo(user);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "name,picture,email");
+        request.setParameters(parameters);
+        request.executeAsync();
+
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -107,4 +146,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void showUserInfo(User user) {
+        TextView te = (TextView) hView.findViewById(R.id.namaUser);
+        te.setText(user.getUsername());
+        te = (TextView) hView.findViewById(R.id.emailUser);
+        te.setText(user.getEmail());
+        Picasso.with(this).load(user.getProfileImageUrl()).into((ImageView) hView.findViewById(R.id.fotoUser));
+    }
 }
