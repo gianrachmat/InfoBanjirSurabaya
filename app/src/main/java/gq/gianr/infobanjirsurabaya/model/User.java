@@ -1,13 +1,22 @@
 package gq.gianr.infobanjirsurabaya.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by j on 17/03/2017.
  */
-
+@IgnoreExtraProperties
 public class User {
-    private String username;
+    public String username;
     private String profileImageUrl;
-    private String email;
+    public String email;
+
+    public User() {}
+
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
 
     public String getEmail() {
         return email;

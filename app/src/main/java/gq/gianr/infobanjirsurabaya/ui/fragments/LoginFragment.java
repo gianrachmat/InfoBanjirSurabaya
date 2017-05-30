@@ -56,7 +56,7 @@ public class LoginFragment extends BaseFragment implements ILoginView{
 
     @Override
     public void showPosts() {
-        ((LoginActivity) getActivity()).showPostFragment();
+//        ((LoginActivity) getActivity()).showPostFragment();
     }
 
     @Override

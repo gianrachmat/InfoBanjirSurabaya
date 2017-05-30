@@ -11,4 +11,7 @@
     <string name="message_user_canceled_login">User canceled login</string>
     <string name="title_activity_rawan">Daerah Rawan Banjir</string>
     <string name="default_fb_photo">https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec condimentum ante, quis mattis mi. Proin ut rhoncus libero, ac euismod neque. Ut suscipit, enim a facilisis consequat, orci lacus venenatis orci, at ultricies orci nulla sed ex. In condimentum viverra velit, eget feugiat libero imperdiet vel. Aenean pretium, lectus vitae bibendum bibendum, diam turpis convallis eros, quis tristique leo sapien at ipsum. Praesent eu odio id nulla lobortis auctor. Donec eget dolor eget nisl euismod commodo vel a lacus. Quisque ut justo vitae urna pharetra accumsan. Etiam dignissim neque iaculis mauris viverra, blandit rhoncus odio porttitor. Phasellus nibh arcu.</string>
+    <string name="msg_subscribed">Subscribed to news topic</string>
+    <dimen name="image_w_h">150dp</dimen>
 </resources>
