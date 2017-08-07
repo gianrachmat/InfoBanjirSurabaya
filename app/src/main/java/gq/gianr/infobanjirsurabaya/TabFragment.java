@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 public class TabFragment extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int an_item = 2;
+    public static int an_item = 3;
     int reqPos = 0;
 
     @Nullable
@@ -59,6 +59,7 @@ public class TabFragment extends Fragment {
             switch (position){
                 case 0 : return new PrimaryFragment();
                 case 1 : return new WeatherFragment();
+                case 2 : return new HistoryFragment();
             }
             return null;
         }
@@ -82,6 +83,8 @@ public class TabFragment extends Fragment {
                     return "Berita";
                 case 1 :
                     return "Cuaca";
+                case 2 :
+                    return "History";
             }
             return null;
         }

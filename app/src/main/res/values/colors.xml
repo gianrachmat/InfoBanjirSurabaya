@@ -6,4 +6,10 @@
     <color name="black">#3c3f41</color>
     <color name="orange">#FA0</color>
     <color name="white">#FFF</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="activated">#E0E0E0</color>
+    <color name="tinggi">#E2595E</color>
+    <color name="sedang">#FF731B</color>
+    <color name="rendah">#169FD1</color>
 </resources>

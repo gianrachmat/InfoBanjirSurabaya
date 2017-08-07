@@ -2,14 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "gq.gianr.infobanjirsurabaya"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 20
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        multiDexEnabled true
         /*jackOptions {
             enabled true
         }*/
@@ -19,6 +20,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
     }
     dexOptions {
     }
@@ -35,37 +39,46 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
-    compile 'com.google.android.gms:play-services-location:10.2.0'
-    compile 'com.google.android.gms:play-services-maps:10.2.0'
-    compile 'com.google.maps.android:android-maps-utils:0.4+'
-
-    compile 'com.google.firebase:firebase-core:10.2.0'
-    compile 'com.google.firebase:firebase-database:10.2.0'
-    compile 'com.google.firebase:firebase-auth:10.2.0'
-    compile 'com.firebaseui:firebase-ui-database:1.0.0'
-    compile 'com.google.firebase:firebase-messaging:10.2.0'
-    compile 'com.google.firebase:firebase-storage:10.2.0'
+    //Gson
+    //Retrofi
+    //RxJava
+    //Facebook
+    //OpenWeatherMap
+    //butter knife
+    //    compile 'com.google.firebase:firebase-perf:11.0.2'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.google.android.gms:play-services-location:11.0.2'
+    compile 'com.google.android.gms:play-services-maps:11.0.2'
+    compile 'com.google.maps.android:android-maps-utils:0.4.+'
+    compile 'io.nlopez.smartlocation:library:3.3.1'
+    compile 'io.nlopez.smartlocation:rx:3.3.1'
+    compile 'com.google.firebase:firebase-core:11.0.2'
+    compile 'com.google.firebase:firebase-database:11.0.2'
+    compile 'com.google.firebase:firebase-auth:11.0.2'
+    compile 'com.firebaseui:firebase-ui-database:2.1.0'
+    compile 'com.google.firebase:firebase-messaging:11.0.2'
+    compile 'com.google.firebase:firebase-storage:11.0.2'
     compile 'com.firebase:firebase-jobdispatcher:0.5.2'
-    testCompile 'junit:junit:4.12'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.makeramen:roundedimageview:2.0.1'
-    //Gson
     compile 'com.google.code.gson:gson:2.3.1'
-    //Retrofi
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    //RxJava
     compile 'io.reactivex:rxandroid:1.2.1'
-    //Facebook
     compile 'com.facebook.android:facebook-android-sdk:4.9.0'
-    //OpenWeatherMap
     compile 'com.github.code-crusher:EasyWeather:v1.2'
-    //butter knife
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.akhgupta:android-easylocation:1.0.1'
+
+//    compile 'com.yayandroid:LocationManager:2.0.3'
+
+    testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.firebase.firebase-perf'

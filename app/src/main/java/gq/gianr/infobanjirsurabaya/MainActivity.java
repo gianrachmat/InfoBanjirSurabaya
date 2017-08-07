@@ -1,12 +1,17 @@
 package gq.gianr.infobanjirsurabaya;
 
+import android.app.ActivityManager;
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -37,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import gq.gianr.infobanjirsurabaya.model.User;
 
@@ -49,10 +55,12 @@ public class MainActivity extends AppCompatActivity
     View hView;
     SharedPreferences sp;
     EditText ip;
+    EditText dir;
     String ips;
     public static Context contextOfApplication;
-
+    private RainfallService rs;
     User user = new User();
+    Intent si;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +72,23 @@ public class MainActivity extends AppCompatActivity
         sp = getSharedPreferences(this.getPackageName()+"_preferences",MODE_PRIVATE);
         setTitle(R.string.app_name);
 
+//        Calendar cal = Calendar.getInstance();
+//        cal.add(Calendar.SECOND, 10);
+//
+//        Intent intent = new Intent(this, RainfallService.class);
+//
+//        PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
+//
+//        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        //for 30 mint 60*60*1000
+//        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+//                DateUtils.MINUTE_IN_MILLIS*30, pintent);
+//
+        rs = new RainfallService(this);
+        si = new Intent(this, rs.getClass());
+        if (!isMyServiceRunning(rs.getClass())) {
+            startService(si);
+        }
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         TabFragment f = new TabFragment();
@@ -84,6 +109,18 @@ public class MainActivity extends AppCompatActivity
         request();
 
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                Log.i ("isMyServiceRunning?", true+"");
+                return true;
+            }
+        }
+        Log.i ("isMyServiceRunning?", false+"");
+        return false;
     }
 
     void request(){
@@ -146,7 +183,9 @@ public class MainActivity extends AppCompatActivity
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_ip);
         dialog.show();
+        dir = (EditText) dialog.findViewById(R.id.direktori);
         ip = (EditText) dialog.findViewById(R.id.ip_address);
+        dir.setText(sp.getString("direktori",""));
         ip.setText(sp.getString("ip_address", ""));
         ips = ip.getText().toString();
         Log.i("dialog","ips:"+ips+", editText:"+ip.getText().toString());
@@ -155,7 +194,7 @@ public class MainActivity extends AppCompatActivity
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save(ip.getText().toString());
+                save(ip.getText().toString(), dir.getText().toString());
                 Log.i("dialog","ip:"+sp.getString("ip_address", "")+", ips:"+ip.getText().toString());
                 dialog.dismiss();
             }
@@ -178,11 +217,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_cuaca) {
             args.putInt("pos", 1);
             f.setArguments(args);
-            fragmentTransaction.replace(R.id.containerView, f).addToBackStack("cuaca").commit();
+            fragmentTransaction.replace(R.id.containerView, f).commit();
         } else if (id == R.id.nav_daerah) {
-            fragmentTransaction.replace(R.id.containerView, new RawanFragment()).addToBackStack("daerah").commit();
+            fragmentTransaction.replace(R.id.containerView, new RawanFragment()).commit();
         } else if (id == R.id.nav_lapor) {
-            fragmentTransaction.replace(R.id.containerView, new LaporFragment()).addToBackStack("lapor").commit();
+            fragmentTransaction.replace(R.id.containerView, new LaporFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -209,10 +248,11 @@ public class MainActivity extends AppCompatActivity
                 .into((ImageView) findViewById(R.id.fotoUserRound));
     }
 
-    void save(String s){
+    void save(String ip_add, String dir){
         SharedPreferences.Editor editor = getSharedPreferences(this.getPackageName()+"_preferences",MODE_PRIVATE).edit();
         System.out.println(getPackageName());
-        editor.putString("ip_address", s);
+        editor.putString("ip_address", ip_add);
+        editor.putString("direktori", dir);
         editor.apply();
 
         Log.i("dialog","ip:"+sp.getString("ip_address", ""));
@@ -270,5 +310,12 @@ public class MainActivity extends AppCompatActivity
         }
         showUserInfo(user);
         saveToPreferences(user);
+    }
+
+    @Override
+    protected void onDestroy() {
+        stopService(si);
+        Log.i("MainActivity", "onDestroy");
+        super.onDestroy();
     }
 }

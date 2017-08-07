@@ -1,5 +1,6 @@
 package gq.gianr.infobanjirsurabaya;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -25,67 +26,4 @@ public class PrimaryFragment extends PostListFragment{
 
         return recentPostsQuery;
     }
-    //    private IFeedPresenter presenter;
-//
-//    private RecyclerView rvPosts;
-//    private PostsAdapter postsAdapter;
-//
-//    private SwipeRefreshLayout srl;
-//
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        presenter = new FeedPresenter();
-//        presenter.setView(this);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        View rootView = inflater.inflate(R.layout.primary_layout, container, false);
-//        rootView.setTag(TAG);
-//
-//        srl = (SwipeRefreshLayout) rootView.findViewById(R.id.srl_primary);
-//        rvPosts = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-//        initPostsAdapter();
-//        return rootView;
-//    }
-//
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        presenter.getPosts();
-//    }
-//
-//    @Override
-//    public void showMessage(String message) {
-//        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-//    }
-//
-//    @Override
-//    public void initPostsAdapter() {
-//        postsAdapter = new PostsAdapter(getContext(), this);
-//        RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
-//        rvPosts.setLayoutManager(lm);
-//        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                presenter.getPosts();
-//                srl.setRefreshing(false);
-//            }
-//        });
-//        rvPosts.setAdapter(postsAdapter);
-//    }
-//
-//    @Override
-//    public void showPosts(Posts posts) {
-//        postsAdapter.updatePosts(posts);
-//    }
-//
-//    @Override
-//    public void onPhotoClick(String permalinkUrl) {
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
-//        intent.setData(Uri.parse(permalinkUrl));
-//        startActivity(intent);
-//    }
 }

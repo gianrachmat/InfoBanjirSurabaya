@@ -27,11 +27,11 @@ import static android.content.Context.MODE_PRIVATE;
  *
  */
 
-public class AsyncGet extends AsyncTask<String,String,ArrayList<Kecamatan>> {
+public class AsyncGet extends AsyncTask<String,String,ArrayList<Kelurahan>> {
     public AsyncResponse delegate = null;
 
     public interface AsyncResponse{
-        void processFinish(ArrayList<Kecamatan> output);
+        void processFinish(ArrayList<Kelurahan> output);
     }
 
     public AsyncGet(AsyncResponse delegate){
@@ -39,8 +39,8 @@ public class AsyncGet extends AsyncTask<String,String,ArrayList<Kecamatan>> {
     }
 
     @Override
-    protected ArrayList<Kecamatan> doInBackground(String... params) {
-        ArrayList<Kecamatan> kec = new ArrayList<>();
+    protected ArrayList<Kelurahan> doInBackground(String... params) {
+        ArrayList<Kelurahan> kec = new ArrayList<>();
         OkHttpClient client = new OkHttpClient();
 		// ip address server
         Context applicationContext = MainActivity.getContextOfApplication();
@@ -48,10 +48,10 @@ public class AsyncGet extends AsyncTask<String,String,ArrayList<Kecamatan>> {
         System.out.println("packageName:"+applicationContext.getPackageName());
 
 //        if (!sp.getString("ip_address", "kosong").equals("kosong")) {
-            String url = "http://"+sp.getString("ip_address", "192.168.43.167");
+            String url = "http://"+sp.getString("ip_address", "gian.it.student.pens.ac.id");
             Request request = new Request.Builder()
                     // url dari api yang mau diambil
-                    .url(url + "/floodizy/backend/web/api/kecamatan/get-all")
+                    .url(url + "/"+sp.getString("direktori", "floodizy")+"/backend/web/api/kelurahan/get-all")
                     .build();
             String response;
 
@@ -60,8 +60,26 @@ public class AsyncGet extends AsyncTask<String,String,ArrayList<Kecamatan>> {
                 response = respon.body().string();
                 JSONArray array = new JSONArray(response);
                 for (int i = 0; i < array.length(); i++) {
-                    Kecamatan a = new Kecamatan();
-                    a.setId(String.valueOf(array.getJSONObject(i).getInt("id")));
+                    Kelurahan a = new Kelurahan();
+//                    a.setId(array.getJSONObject(i).getInt("id"));
+//                    a.setTipe(array.getJSONObject(i).getString("tipe_banjir"));
+//                    a.setJenis(array.getJSONObject(i).getString("jenis_banjir"));
+//                    a.setKecamatan(array.getJSONObject(i).getString("kecamatan"));
+//                    a.setKelurahan(array.getJSONObject(i).getString("kelurahan"));
+//                    a.setKorban(array.getJSONObject(i).getString("korban_jiwa"));
+//                    a.setFoto(array.getJSONObject(i).getString("foto"));
+//                    a.setLama(array.getJSONObject(i).getString("lama"));
+//                    a.setKedalaman(array.getJSONObject(i).getString("kedalaman"));
+//                    a.setGeo(array.getJSONObject(i).getString("geometry"));
+//                    a.setRayon(array.getJSONObject(i).getString("rayon"));
+//                    a.setRayon(array.getJSONObject(i).getString("rayon"));
+//                    a.setTanggal(array.getJSONObject(i).getString("tanggal"));
+//                    a.setLuas(array.getJSONObject(i).getString("luas"));
+//                    a.setLevel(array.getJSONObject(i).getString("level"));
+//                    a.setBulan(array.getJSONObject(i).getString("bulan"));
+//                    a.setTahun(array.getJSONObject(i).getInt("tahun"));
+                    a.setId(array.getJSONObject(i).getInt("id"));
+                    a.setKelurahan(array.getJSONObject(i).getString("kelurahan"));
                     a.setKecamatan(array.getJSONObject(i).getString("kecamatan"));
                     a.setGeo(array.getJSONObject(i).getString("geometry"));
                     kec.add(a);
@@ -71,16 +89,11 @@ public class AsyncGet extends AsyncTask<String,String,ArrayList<Kecamatan>> {
             } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
-//        } else {
-//            return null;
-//        }
         return null;
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Kecamatan> kecamatan) {
-        delegate.processFinish(kecamatan);
+    protected void onPostExecute(ArrayList<Kelurahan> kelurahen) {
+        delegate.processFinish(kelurahen);
     }
-
-
 }

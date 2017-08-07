@@ -10,44 +10,34 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/et_judul"
-                android:inputType="text"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/textView3"
-                android:layout_alignParentRight="true" />
+                android:id="@+id/il_judul"
+                android:layout_height="wrap_content" >
+                <EditText
+                    android:id="@+id/et_judul"
+                    android:inputType="text"
+                    android:hint="Judul"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true" />
+            </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="Judul"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_alignParentLeft="true" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/et_judul"
-                android:text="Deskripsi"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_alignParentLeft="true" />
-
-            <EditText
-                android:id="@+id/et_deskripsi"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView4"
-                android:layout_alignParentLeft="true" />
+                android:id="@+id/il_deskripsi"
+                android:layout_below="@+id/il_judul"
+                android:layout_height="wrap_content" >
+                <EditText
+                    android:id="@+id/et_deskripsi"
+                    android:layout_width="match_parent"
+                    android:hint="Deskripsi"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true" />
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/pilih_gambar"
@@ -59,13 +49,13 @@
 
             <ImageView
                 android:id="@+id/foto"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_below="@+id/pilih_gambar"
                 android:layout_centerHorizontal="true" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Kirim"
                 android:id="@+id/bt_kirim"
@@ -78,20 +68,26 @@
                 android:layout_height="wrap_content"
                 android:text="Foto Kejadian"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_below="@+id/et_deskripsi"
+                android:layout_below="@+id/il_lokasi"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="31dp"
                 android:layout_alignParentLeft="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lokasi"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/textView7"
-                android:layout_below="@+id/et_deskripsi"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:id="@+id/il_lokasi"
+
+                android:layout_below="@+id/il_deskripsi"
+                android:layout_height="wrap_content" >
+                <EditText
+                    android:id="@+id/et_lokasi"
+                    android:layout_width="match_parent"
+                    android:hint="Lokasi"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:focusable="false"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true" />
+            </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

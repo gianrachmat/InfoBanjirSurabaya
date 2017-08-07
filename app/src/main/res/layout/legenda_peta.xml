@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:background="@color/activated"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+    <View
+        android:background="@color/tinggi"
+        android:id="@+id/v_tinggi"
+        android:layout_width="75dp"
+        android:layout_height="25dp"/>
+    <View
+        android:background="@color/sedang"
+        android:id="@+id/v_sedang"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_toEndOf="@+id/v_tinggi"
+        android:layout_toRightOf="@+id/v_tinggi"/>
+    <View
+        android:background="@color/rendah"
+        android:id="@+id/v_rendah"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_toEndOf="@+id/v_sedang"
+        android:layout_toRightOf="@+id/v_sedang"/>
+    <TextView
+        android:layout_below="@+id/v_tinggi"
+        android:id="@+id/tv_tinggi"
+        android:text="Tinggi"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_width="75dp"
+        android:layout_height="25dp" />
+    <TextView
+        android:layout_below="@+id/v_sedang"
+        android:id="@+id/tv_sedang"
+        android:text="Sedang"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_toEndOf="@+id/tv_tinggi"
+        android:layout_toRightOf="@+id/tv_tinggi"/>
+    <TextView
+        android:id="@+id/tv_rendah"
+        android:text="Rendah"
+        android:layout_below="@+id/v_rendah"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_toEndOf="@+id/tv_sedang"
+        android:layout_toRightOf="@+id/tv_sedang"/>
+</RelativeLayout>
